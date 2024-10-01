@@ -1,0 +1,150 @@
+﻿@model List<Attraction>
+@{
+    ViewData["Title"] = "Attractions";
+}
+
+<style>
+    .header {
+        background-color: #182F40;
+        color: white;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+    }
+
+    .header-logo {
+        max-width: 100px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .header-title {
+        margin: 0;
+    }
+
+    .search-bar {
+        margin-top: 20px;
+        padding: 10px;
+        text-align: center;
+    }
+
+        .search-bar input {
+            width: 300px;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            padding: 15px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+    .attraction-card {
+        display: flex;
+        align-items: center;
+        margin: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .attraction-card.selected {
+            background-color: #007bff;
+            color: white;
+        }
+
+    .attraction-image {
+        width: 100px;
+        height: auto;
+        margin-right: 15px;
+    }
+
+    #select-button {
+        display: block;
+        margin: 20px auto 40px;
+        padding: 15px 30px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        #select-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+</style>
+
+<div class="header">
+    <div class="header-content">
+        <img src="~/tix.png" class="header-logo" />
+        <h1 class="header-title">EncoreTIX</h1>
+    </div>
+</div>
+
+<div class="search-bar">
+    <form asp-controller="Attractions" asp-action="Index" method="get">
+        <input type="text" name="searchTerm" value="@ViewBag.SearchTerm" placeholder="Search for attractions..." />
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div class="body">
+    @if (!Model.Any())
+    {
+        <p>No results found</p>
+    }
+    else
+    {
+        <div class="attractions-container">
+            @foreach (var attraction in Model)
+            {
+                <div class="attraction-card" data-id="@attraction.Id">
+                    <img src="@attraction.Image" alt="@attraction.Name" class="attraction-image" />
+                    <h3>@attraction.Name</h3>
+                </div>
+            }
+        </div>
+
+        <button id="select-button" disabled>Select</button>
+    }
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cards = document.querySelectorAll('.attraction-card');
+        const selectButton = document.getElementById('select-button');
+        let selectedId = null;
+
+        cards.forEach(card => {
+            card.addEventListener('click', function () {
+                cards.forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedId = this.getAttribute('data-id');
+                selectButton.disabled = false;
+            });
+        });
+
+        selectButton.addEventListener('click', function () {
+            if (selectedId) {
+                window.location.href = '/Attractions/Details?id=' + selectedId;
+            }
+        });
+    });
+</script>

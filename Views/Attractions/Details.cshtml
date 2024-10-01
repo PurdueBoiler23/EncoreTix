@@ -1,0 +1,130 @@
+﻿@model Attraction
+
+@{
+    var events = ViewBag.Events as List<Event>;
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="header">
+    <div class="header-content">
+        <img src="~/tix.png" class="header-logo" />
+        <h1 class="header-title">EncoreTIX</h1>
+    </div>
+</div>
+
+<img src="@Model.Image" alt="@Model.Name" class="attraction-image" />
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <span style="font-size: 24px; font-weight: bold;">@Model.Name</span>
+    <div>
+        <a href="@Model.TwitterLink" target="_blank">
+            <img src="~/twitter.png" style="margin-right: 10px" />
+        </a>
+        <a href="@Model.YoutubeLink" target="_blank">
+            <img src="~/youtube.png" style="margin-right: 10px" />
+        </a>
+        <a href="@Model.SpotifyLink" target="_blank">
+            <img src="~/spotify.png" />
+        </a>
+        <a href="@Model.WebsiteLink" target="_blank">
+            <img src="~/site.png" />
+        </a>
+    </div>
+</div>
+
+<h3>Upcoming Events:</h3>
+@if (events != null && events.Any())
+{
+    <div class="events-container">
+        @foreach (var eventItem in events)
+        {
+            <div class="event-card">
+                <img src="@eventItem.Image" alt="@eventItem.Name" class="event-image" />
+                <div class="event-details">
+                    <p class="event-date">@eventItem.LocalDate.ToString("dddd, MMMM dd, yyyy")</p>
+                    <h4 class="event-name">@eventItem.Name</h4>
+                    <p class="event-location">@eventItem.Venue</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No upcoming events found.</p>
+}
+
+<style>
+    .header {
+        background-color: #182F40;
+        color: white;
+        padding: 20px;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+    }
+
+    .header-logo {
+        max-width: 100px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .attraction-image {
+        max-width: 500px;
+        max-height: 400px;
+        min-width: 300px;
+        min-height: 200px;
+        width: auto;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .events-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .event-card {
+        display: flex;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 15px;
+        align-items: center;
+    }
+
+    .event-image {
+        max-width: 100px;
+        max-height: 100px;
+        width: auto;
+        height: auto;
+        margin-right: 15px;
+    }
+
+    .event-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .event-date {
+        margin: 0;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .event-name {
+        margin: 5px 0;
+        font-size: 18px;
+    }
+
+    .event-location {
+        margin: 0;
+        font-size: 14px;
+        color: #666;
+    }
+</style>
