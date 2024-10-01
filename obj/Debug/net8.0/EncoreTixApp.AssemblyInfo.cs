@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EncoreTixApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b60038ed25cc8eaf1d8137c83ca9b50e48ac8ed")]
 [assembly: System.Reflection.AssemblyProductAttribute("EncoreTixApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EncoreTixApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

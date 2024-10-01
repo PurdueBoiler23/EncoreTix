@@ -64,3 +64,4 @@ C:\Users\jgaet\source\repos\EncoreTixApp\obj\Debug\net8.0\refint\EncoreTixApp.dl
 C:\Users\jgaet\source\repos\EncoreTixApp\obj\Debug\net8.0\EncoreTixApp.pdb
 C:\Users\jgaet\source\repos\EncoreTixApp\obj\Debug\net8.0\EncoreTixApp.genruntimeconfig.cache
 C:\Users\jgaet\source\repos\EncoreTixApp\obj\Debug\net8.0\ref\EncoreTixApp.dll
+C:\Users\jgaet\source\repos\EncoreTixApp\obj\Debug\net8.0\EncoreTixApp.sourcelink.json
